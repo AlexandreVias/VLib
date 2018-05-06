@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.List;
@@ -61,7 +60,7 @@ public class ListStationsMActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Station station = stations.get(position);
-                Intent intent = new Intent(ListStationsMActivity.this, SetStationMActivity.class);
+                Intent intent = new Intent(ListStationsMActivity.this, StationMActivity.class);
                 intent.putExtra("station", station);
                 startActivity(intent);
             }

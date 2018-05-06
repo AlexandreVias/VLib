@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ListStationsMActivity" />
-        <activity android:name=".activities.SetStationMActivity"></activity>
+        <activity android:name=".activities.StationMActivity" />
     </application>
 
 </manifest>

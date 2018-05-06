@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
-    private static final int versionBD = 2;
+    private static final int versionBD = 5;
     private static final String nomBD = "vlib.db";
 
     private String requeteStation = "CREATE TABLE IF NOT EXISTS STATION(" +
@@ -86,15 +86,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteEtat_Station);
         db.execSQL(requeteEtat_Plot);
         db.execSQL(requeteEtat_Velo);
-        db.execSQL("INSERT INTO STATION VALUES (1, 'M', 'Stalindrad', 'Bordeaux', 200, '1')");
-        db.execSQL("INSERT INTO STATION VALUES (2, 'F', 'La Victoire', 'Bordeaux', 120, '1')");
-        db.execSQL("INSERT INTO STATION VALUES (3, 'F', 'Barrière Saint-Genès', 'Bordeaux', 50, '0')");
-        Log.d("Test", "Passage dans onCreate");
+        db.execSQL("INSERT INTO STATION VALUES ('1', 'M', 'Stalindrad', 'Bordeaux', 200, '1')");
+            db.execSQL("INSERT INTO PLOT VALUES ('1', '1', 'M')");
+            db.execSQL("INSERT INTO PLOT VALUES ('1', '2', 'F')");
+            db.execSQL("INSERT INTO PLOT VALUES ('1', '3', 'M')");
+        db.execSQL("INSERT INTO STATION VALUES ('2', 'F', 'La Victoire', 'Bordeaux', 120, '1')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '1', 'M')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '2', 'F')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '3', 'M')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '4', 'F')");
+        db.execSQL("INSERT INTO STATION VALUES ('3', 'F', 'Barrière Saint-Genès', 'Bordeaux', 50, '0')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '1', 'M')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '2', 'F')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '3', 'M')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '4', 'F')");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        Log.d("Test", "Passage dans onUpgrade");
         db.execSQL(requeteStationDrop);
         db.execSQL(requetePlotDrop);
         db.execSQL(requeteVeloDrop);
@@ -103,7 +112,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        Log.d("Test", "Passage dans onDowngrade");
         db.execSQL(requeteStationDrop);
         db.execSQL(requetePlotDrop);
         db.execSQL(requeteVeloDrop);
