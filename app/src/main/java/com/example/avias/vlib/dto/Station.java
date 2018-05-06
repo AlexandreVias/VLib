@@ -1,10 +1,12 @@
 package com.example.avias.vlib.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by avias on 30/03/2018.
  */
 
-public class Station {
+public class Station implements Serializable{
     private String nums;
     private String etatcs;
     private String nom;
