@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.avias.vlib.R;
@@ -32,6 +33,12 @@ public class StationMActivity extends Activity {
 
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(station.getNom());
+        RadioButton radioButtonF = (RadioButton) findViewById((R.id.radioButtonF));
+        RadioButton radioButtonM = (RadioButton) findViewById((R.id.radioButtonM));
+        if (station.getEtatcs().equals("F"))
+            radioButtonF.setChecked(true);
+        else
+            radioButtonM.setChecked(true);
 
         final ArrayList<Plot> plots = plotDAO.listPlotStation(station);
         final List<String[]> listPlots = new LinkedList<>();
