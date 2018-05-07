@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
-    private static final int versionBD = 5;
+    private static final int versionBD = 7;
     private static final String nomBD = "vlib.db";
 
     private String requeteStation = "CREATE TABLE IF NOT EXISTS STATION(" +
@@ -87,6 +87,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteEtat_Plot);
         db.execSQL(requeteEtat_Velo);
         db.execSQL("INSERT INTO STATION VALUES ('1', 'M', 'Stalindrad', 'Bordeaux', 200, '1')");
+            db.execSQL("INSERT INTO ETAT_STATION VALUES ('17/10/2017 14:27:30', '1', 'M')");
+            db.execSQL("INSERT INTO ETAT_STATION VALUES ('24/12/2017 15:45:32', '1', 'F')");
+            db.execSQL("INSERT INTO ETAT_STATION VALUES ('29/02/2018 23:45:35', '1', 'M')");
+            db.execSQL("INSERT INTO ETAT_STATION VALUES ('12/04/2018 23:32:45', '1', 'F')");
+            db.execSQL("INSERT INTO ETAT_STATION VALUES ('07/05/2018 02:16:12', '1', 'M')");
             db.execSQL("INSERT INTO PLOT VALUES ('1', '1', 'M')");
             db.execSQL("INSERT INTO PLOT VALUES ('1', '2', 'F')");
             db.execSQL("INSERT INTO PLOT VALUES ('1', '3', 'M')");
@@ -107,6 +112,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteStationDrop);
         db.execSQL(requetePlotDrop);
         db.execSQL(requeteVeloDrop);
+        db.execSQL(requeteEtat_Station);
+        db.execSQL(requeteEtat_Plot);
+        db.execSQL(requeteEtat_Velo);
         onCreate(db);
     }
 
@@ -115,6 +123,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteStationDrop);
         db.execSQL(requetePlotDrop);
         db.execSQL(requeteVeloDrop);
+        db.execSQL(requeteEtat_Station);
+        db.execSQL(requeteEtat_Plot);
+        db.execSQL(requeteEtat_Velo);
         onCreate(db);
     }
 }
