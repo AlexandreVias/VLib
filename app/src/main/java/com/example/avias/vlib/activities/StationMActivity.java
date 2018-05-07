@@ -11,26 +11,32 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.avias.vlib.MainActivity;
 import com.example.avias.vlib.R;
+import com.example.avias.vlib.db.EtatStationDAO;
 import com.example.avias.vlib.db.PlotDAO;
 import com.example.avias.vlib.dto.Plot;
 import com.example.avias.vlib.dto.Station;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class StationMActivity extends Activity {
     final PlotDAO plotDAO = new PlotDAO(this);
+    final EtatStationDAO etatStationDAO = new EtatStationDAO(this);
+    Station station = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_m);
         Intent intent = getIntent();
-        final Station station = (Station) intent.getExtras().getSerializable("station");
+        if (intent.getExtras() != null)
+            station = (Station) intent.getExtras().getSerializable("station");
 
         TextView textView = findViewById(R.id.textViewS);
         textView.setText(station.getNom());
@@ -76,6 +82,37 @@ public class StationMActivity extends Activity {
                 Intent intent = new Intent(StationMActivity.this, HistoryStationActivity.class);
                 intent.putExtra("station", station);
                 startActivity(intent);
+            }
+        });
+
+        final Button buttonV = findViewById(R.id.buttonV);
+        buttonV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = "Erreur";
+                RadioButton radioButtonF = findViewById(R.id.radioButtonF);
+                RadioButton radioButtonM = findViewById(R.id.radioButtonM);
+
+                //Vérifie qu'il y a bien un changement d'état
+                if ((radioButtonF.isChecked() && station.getEtatcs().equals("F")) || (radioButtonM.isChecked() && station.getEtatcs().equals("M"))) {
+                    text = "Changer l'état pour valider";
+                    Toast.makeText(StationMActivity.this, text, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                //Change l'état de l'objet station
+                if (radioButtonF.isChecked())
+                    station.setEtatcs("F");
+                else
+                    station.setEtatcs("M");
+
+                //Change l'état de la station dans la base de données, et l'enregesitre dans l'historique des états
+                if (etatStationDAO.addEtatStation(station)) {
+                    text = "Changement d'état réussi";
+                    Intent intent = new Intent(StationMActivity.this, ListStationsMActivity.class);
+                    startActivity(intent);
+                }
+                Toast.makeText(StationMActivity.this, text, Toast.LENGTH_SHORT).show();
             }
         });
     }

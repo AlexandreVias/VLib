@@ -1,12 +1,15 @@
 package com.example.avias.vlib.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.avias.vlib.R;
 import com.example.avias.vlib.db.EtatStationDAO;
@@ -17,16 +20,21 @@ import java.util.ArrayList;
 
 public class HistoryStationActivity extends Activity {
     final EtatStationDAO etatStationDAO = new EtatStationDAO(this);
+    Station station = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_station);
         Intent intent = getIntent();
-        final Station station = (Station) intent.getExtras().getSerializable("station");
+        if (intent.getExtras() != null)
+            station = (Station) intent.getExtras().getSerializable("station");
 
-        TextView textViewS = (TextView) findViewById(R.id.textViewS);
-        textViewS.setText("Historique de " + station.getNom());
+        TextView textViewS = findViewById(R.id.textViewS);
+        String text = "";
+        if (station != null)
+            text = "Historique de " + station.getNom();
+        textViewS.setText(text);
 
         ArrayList<EtatStation> etatsStation =  etatStationDAO.listEtatStation(station);
         if (etatsStation == null || etatsStation.isEmpty())
@@ -37,11 +45,8 @@ public class HistoryStationActivity extends Activity {
                 listEtatsStation.add(etatStation.getDatem().substring(0,10) + " - " + etatStation.getEtats());
 
             ListView listViewES = findViewById(R.id.listviewES);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(HistoryStationActivity.this,android.R.layout.simple_list_item_1, listEtatsStation);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(HistoryStationActivity.this,android.R.layout.simple_list_item_1, listEtatsStation);
             listViewES.setAdapter(adapter);
         }
-
-
-
     }
 }
