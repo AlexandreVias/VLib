@@ -1,14 +1,16 @@
 package com.example.avias.vlib.dto;
 
-public class EtatStation {
+public class EtatPlot {
     private String datem;
     private Station station;
-    private String etats;
+    private Plot plot;
+    private String etatp;
 
-    public EtatStation(String datem, Station station, String etats) {
+    public EtatPlot(String datem, Station station, Plot plot, String etatp) {
         this.datem = datem;
         this.station = station;
-        this.etats = etats;
+        this.plot = plot;
+        this.etatp = etatp;
     }
 
     public String getDatem() {
@@ -27,11 +29,19 @@ public class EtatStation {
         this.station = station;
     }
 
-    public String getEtats() {
-        return etats;
+    public Plot getPlot() {
+        return plot;
     }
 
-    public void setEtats(String etats) {
-        this.etats = etats;
+    public void setPlot(Plot plot) {
+        this.plot = plot;
+    }
+
+    public String getEtatp() {
+        return etatp;
+    }
+
+    public void setEtatp(String etatp) {
+        this.etatp = etatp;
     }
 }

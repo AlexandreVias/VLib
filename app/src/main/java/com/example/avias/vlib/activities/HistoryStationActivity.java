@@ -1,7 +1,6 @@
 package com.example.avias.vlib.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.avias.vlib.R;
 import com.example.avias.vlib.db.EtatStationDAO;
@@ -30,7 +28,7 @@ public class HistoryStationActivity extends Activity {
         if (intent.getExtras() != null)
             station = (Station) intent.getExtras().getSerializable("station");
 
-        TextView textViewS = findViewById(R.id.textViewS);
+        TextView textViewS = findViewById(R.id.textViewP);
         String text = "";
         if (station != null)
             text = "Historique de " + station.getNom();
@@ -48,5 +46,15 @@ public class HistoryStationActivity extends Activity {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(HistoryStationActivity.this,android.R.layout.simple_list_item_1, listEtatsStation);
             listViewES.setAdapter(adapter);
         }
+
+        final Button buttonBack = findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryStationActivity.this, StationMActivity.class);
+                intent.putExtra("station", station);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -23,16 +23,21 @@ public class Station implements Serializable{
         this.presenceborne = presenceborne;
     }
 
-    public String toString(){
-        return nom + " " + situation + " " + etatcs;
-    }
-
     public String getNums() {
         return nums;
     }
 
     public String getEtatcs() {
         return etatcs;
+    }
+
+    public String getLibelleEtatcs(){
+        if (this.etatcs.equals("M"))
+            return "En maintenance";
+        else if(this.etatcs.equals("M"))
+            return "En fonctionnement";
+        else
+            return "Non enregistré";
     }
 
     public String getNom() {

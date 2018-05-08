@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".activities.ListStationsMActivity" />
         <activity android:name=".activities.StationMActivity" />
-        <activity android:name=".activities.HistoryStationActivity"></activity>
+        <activity android:name=".activities.HistoryStationActivity" />
+        <activity android:name=".activities.HistoryPlotActivity"></activity>
     </application>
 
 </manifest>

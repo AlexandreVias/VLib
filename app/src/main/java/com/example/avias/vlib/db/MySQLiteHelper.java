@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
-    private static final int versionBD = 7;
+    private static final int versionBD = 10;
     private static final String nomBD = "vlib.db";
 
     private String requeteStation = "CREATE TABLE IF NOT EXISTS STATION(" +
@@ -72,7 +72,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static String requeteVeloDrop = "DROP TABLE IF EXISTS velo";
     private static String requeteEtat_StationDrop = "DROP TABLE IF EXISTS etat_station";
     private static String requeteEtat_PlotDrop = "DROP TABLE IF EXISTS etat_plot";
-    private static String requeteEtat_veloDrop = "DROP TABLE IF EXISTS etat_velo";
+    private static String requeteEtat_VeloDrop = "DROP TABLE IF EXISTS etat_velo";
 
     public MySQLiteHelper(Context context){
         super(context, nomBD, null, versionBD);
@@ -86,25 +86,27 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteEtat_Station);
         db.execSQL(requeteEtat_Plot);
         db.execSQL(requeteEtat_Velo);
-        db.execSQL("INSERT INTO STATION VALUES ('1', 'M', 'Stalindrad', 'Bordeaux', 200, '1')");
+        db.execSQL("INSERT INTO STATION VALUES ('1', 'M', 'Stalingrad', 'Bordeaux', 200, '1')");
             db.execSQL("INSERT INTO ETAT_STATION VALUES ('17/10/2017 14:27:30', '1', 'M')");
             db.execSQL("INSERT INTO ETAT_STATION VALUES ('24/12/2017 15:45:32', '1', 'F')");
             db.execSQL("INSERT INTO ETAT_STATION VALUES ('29/02/2018 23:45:35', '1', 'M')");
             db.execSQL("INSERT INTO ETAT_STATION VALUES ('12/04/2018 23:32:45', '1', 'F')");
             db.execSQL("INSERT INTO ETAT_STATION VALUES ('07/05/2018 02:16:12', '1', 'M')");
             db.execSQL("INSERT INTO PLOT VALUES ('1', '1', 'M')");
-            db.execSQL("INSERT INTO PLOT VALUES ('1', '2', 'F')");
-            db.execSQL("INSERT INTO PLOT VALUES ('1', '3', 'M')");
-        db.execSQL("INSERT INTO STATION VALUES ('2', 'F', 'La Victoire', 'Bordeaux', 120, '1')");
-            db.execSQL("INSERT INTO PLOT VALUES ('2', '1', 'M')");
-            db.execSQL("INSERT INTO PLOT VALUES ('2', '2', 'F')");
-            db.execSQL("INSERT INTO PLOT VALUES ('2', '3', 'M')");
-            db.execSQL("INSERT INTO PLOT VALUES ('2', '4', 'F')");
-        db.execSQL("INSERT INTO STATION VALUES ('3', 'F', 'Barrière Saint-Genès', 'Bordeaux', 50, '0')");
-            db.execSQL("INSERT INTO PLOT VALUES ('3', '1', 'M')");
-            db.execSQL("INSERT INTO PLOT VALUES ('3', '2', 'F')");
-            db.execSQL("INSERT INTO PLOT VALUES ('3', '3', 'M')");
-            db.execSQL("INSERT INTO PLOT VALUES ('3', '4', 'F')");
+                db.execSQL("INSERT INTO ETAT_PLOT VALUES ('17/10/2017 14:27:30', '1', '1', 'M')");
+                db.execSQL("INSERT INTO ETAT_PLOT VALUES ('24/12/2017 15:45:32', '1', '1', 'F')");
+            db.execSQL("INSERT INTO PLOT VALUES ('1', '2', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('1', '3', '')");
+        db.execSQL("INSERT INTO STATION VALUES ('2', '', 'La Victoire', 'Bordeaux', 120, '1')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '1', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '2', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '3', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('2', '4', '')");
+        db.execSQL("INSERT INTO STATION VALUES ('3', '', 'Barrière Saint-Genès', 'Bordeaux', 50, '0')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '1', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '2', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '3', '')");
+            db.execSQL("INSERT INTO PLOT VALUES ('3', '4', '')");
     }
 
     @Override
@@ -112,9 +114,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteStationDrop);
         db.execSQL(requetePlotDrop);
         db.execSQL(requeteVeloDrop);
-        db.execSQL(requeteEtat_Station);
-        db.execSQL(requeteEtat_Plot);
-        db.execSQL(requeteEtat_Velo);
+        db.execSQL(requeteEtat_StationDrop);
+        db.execSQL(requeteEtat_PlotDrop);
+        db.execSQL(requeteEtat_VeloDrop);
         onCreate(db);
     }
 
@@ -123,9 +125,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(requeteStationDrop);
         db.execSQL(requetePlotDrop);
         db.execSQL(requeteVeloDrop);
-        db.execSQL(requeteEtat_Station);
-        db.execSQL(requeteEtat_Plot);
-        db.execSQL(requeteEtat_Velo);
+        db.execSQL(requeteEtat_StationDrop);
+        db.execSQL(requeteEtat_PlotDrop);
+        db.execSQL(requeteEtat_VeloDrop);
         onCreate(db);
     }
 }

@@ -35,8 +35,10 @@ public class Plot implements Serializable {
     public String getLibelleEtatcp(){
         if (this.etatcp.equals("M"))
             return "En maintenance";
-        else
+        else if(this.etatcp.equals("F"))
             return "En fonctionnement";
+        else
+            return "Non enregistré";
     }
 
     public void setEtatcp(String etatcp) {

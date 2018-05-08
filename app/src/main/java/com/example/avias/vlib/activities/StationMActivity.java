@@ -13,14 +13,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.avias.vlib.MainActivity;
 import com.example.avias.vlib.R;
 import com.example.avias.vlib.db.EtatStationDAO;
 import com.example.avias.vlib.db.PlotDAO;
 import com.example.avias.vlib.dto.Plot;
 import com.example.avias.vlib.dto.Station;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,7 +36,7 @@ public class StationMActivity extends Activity {
         if (intent.getExtras() != null)
             station = (Station) intent.getExtras().getSerializable("station");
 
-        TextView textView = findViewById(R.id.textViewS);
+        TextView textView = findViewById(R.id.textViewP);
         textView.setText(station.getNom());
         RadioButton radioButtonF = findViewById((R.id.radioButtonF));
         RadioButton radioButtonM = findViewById((R.id.radioButtonM));
@@ -74,6 +72,16 @@ public class StationMActivity extends Activity {
             }
         };
         listViewPlots.setAdapter(adapter);
+
+        listViewPlots.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Plot plot = plots.get(position);
+                Intent intent = new Intent(StationMActivity.this, HistoryPlotActivity.class);
+                intent.putExtra("plot", plot);
+                startActivity(intent);
+            }
+        });
 
         final Button buttonH = findViewById(R.id.buttonH);
         buttonH.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +121,15 @@ public class StationMActivity extends Activity {
                     startActivity(intent);
                 }
                 Toast.makeText(StationMActivity.this, text, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Button buttonBack = findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StationMActivity.this, ListStationsMActivity.class);
+                startActivity(intent);
             }
         });
     }
