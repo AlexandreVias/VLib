@@ -9,10 +9,6 @@ import com.example.avias.vlib.dto.Station;
 
 import java.util.ArrayList;
 
-/**
- * Created by avias on 30/03/2018.
- */
-
 public class StationDAO {
     private MySQLiteHelper accesBD;
 
