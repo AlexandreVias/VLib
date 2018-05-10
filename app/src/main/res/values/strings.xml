@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VLib</string>
+    <string name="title_activity_list_station">ListStationActivity</string>
+    <string name="title_activity_ajout_station">AjoutStation</string>
 </resources>

@@ -2,14 +2,13 @@ package com.example.avias.vlib;
 
 import android.content.Intent;
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.avias.vlib.activities.AjoutStationActivity;
+import com.example.avias.vlib.activities.ListStationActivity;
 import com.example.avias.vlib.activities.ListStationsMActivity;
-import com.example.avias.vlib.db.MySQLiteHelper;
 
 public class MainActivity extends Activity {
 
@@ -27,5 +26,21 @@ public class MainActivity extends Activity {
             }
         });
 
+        final Button buttonVelos = (Button) findViewById(R.id.btnVelos);
+        buttonVelos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListStationActivity.class);
+                startActivity(intent);
+            }
+        });
+        final Button buttonAjouter = (Button) findViewById(R.id.btnAjouterStation);
+        buttonAjouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListStationActivity.class, AjoutStationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
