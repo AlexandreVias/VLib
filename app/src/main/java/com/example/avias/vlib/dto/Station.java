@@ -34,7 +34,7 @@ public class Station implements Serializable{
     public String getLibelleEtatcs(){
         if (this.etatcs.equals("M"))
             return "En maintenance";
-        else if(this.etatcs.equals("M"))
+        else if(this.etatcs.equals("F"))
             return "En fonctionnement";
         else
             return "Non enregistré";
