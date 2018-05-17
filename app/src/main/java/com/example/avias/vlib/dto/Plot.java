@@ -1,42 +1,47 @@
 package com.example.avias.vlib.dto;
 
-/**
- * Created by jcorbu on 06/04/2018.
- */
+import java.io.Serializable;
 
-public class    Plot {
-    private String nums;
+public class Plot implements Serializable {
+    private Station station;
     private String nump;
     private String etatcp;
 
-    public Plot(String nums,  String nump, String etatcp){
-        this.nums = nums;
+    public Plot(Station station, String nump, String etatcp){
+        this.station = station;
         this.nump = nump;
         this.etatcp = etatcp;
     }
 
-    public String getNums() {
-        return nums;
+    public Station getStation() {
+        return station;
     }
 
-    public String getEtatcp() {
-        return etatcp;
+    public void setStation(Station station) {
+        this.station = station;
     }
 
     public String getNump() {
         return nump;
     }
 
-    public void setNums(String nums) {
-        this.nums = nums;
+    public void setNump(String nump) {
+        this.nump = nump;
+    }
+
+    public String getEtatcp() {
+        return etatcp;
+    }
+    public String getLibelleEtatcp(){
+        if (this.etatcp.equals("M"))
+            return "En maintenance";
+        else if(this.etatcp.equals("F"))
+            return "En fonctionnement";
+        else
+            return "Non enregistré";
     }
 
     public void setEtatcp(String etatcp) {
         this.etatcp = etatcp;
     }
-
-    public void setNump(String nump) {
-        this.nump = nump;
-    }
-
 }

@@ -17,13 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ListStationsMActivity" />
-        <activity android:name=".activities.SetStationMActivity" />
-        <activity
-            android:name=".activities.ListStationActivity"
-            android:label="@string/title_activity_list_station" />
-        <activity
-            android:name=".activities.AjoutStationActivity"
-            android:label="@string/title_activity_ajout_station"></activity>
+        <activity android:name=".activities.StationMActivity" />
+        <activity android:name=".activities.HistoryStationActivity" />
+        <activity android:name=".activities.HistoryPlotActivity"></activity>
     </application>
 
 </manifest>
